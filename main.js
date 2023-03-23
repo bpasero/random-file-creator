@@ -38,12 +38,16 @@ button.onclick = async () => {
   const promises = [];
 
   for (let i = 0; i < 1000; i++) {
-    const fileHandle = await dirHandle.getFileHandle(`somefile-${i}.txt`, {
-      create: true,
-    });
-    const writable = await fileHandle.createWritable();
-    await writable.write(randomStr(100000));
-    await writable.close();
+    promises.push(
+      (async () => {
+        const fileHandle = await dirHandle.getFileHandle(`somefile-${i}.txt`, {
+          create: true,
+        });
+        const writable = await fileHandle.createWritable();
+        await writable.write(randomStr(100000));
+        await writable.close();
+      })()
+    );
   }
 
   await Promise.allSettled(promises);

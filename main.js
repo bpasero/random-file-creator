@@ -26,6 +26,11 @@ const button = document.createElement("button");
 button.textContent = "Pick a directory";
 window.document.body.appendChild(button);
 
+const randomContents = [];
+for (let i = 0; i < 1000; i++) {
+  randomContents.push(randomStr(10000));
+}
+
 button.onclick = async () => {
   const result = await window.showDirectoryPicker();
   if (!result) {
@@ -33,11 +38,6 @@ button.onclick = async () => {
   }
 
   const dirHandle = result;
-
-  const randomContents = [];
-  for (let i = 0; i < 1000; i++) {
-    randomContents.push(randomStr(100000));
-  }
 
   const start = Date.now();
   const promises = [];

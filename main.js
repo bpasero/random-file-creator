@@ -53,5 +53,4 @@ button.onclick = async () => {
   await Promise.allSettled(promises);
 
   window.alert(`Took ${Date.now() - start}ms to create 1000 files`);
-  console.log(`Took ${Date.now() - start}ms to create 1000 files`);
 };

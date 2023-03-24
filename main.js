@@ -34,6 +34,11 @@ button.onclick = async () => {
 
   const dirHandle = result;
 
+  const randomContents = [];
+  for (let i = 0; i < 1000; i++) {
+    randomContents.push(randomStr(100000));
+  }
+
   const start = Date.now();
   const promises = [];
 
@@ -44,7 +49,7 @@ button.onclick = async () => {
           create: true,
         });
         const writable = await fileHandle.createWritable();
-        await writable.write(randomStr(100000));
+        await writable.write(randomContents[i]);
         await writable.close();
       })()
     );
